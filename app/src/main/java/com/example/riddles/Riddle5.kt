@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class Riddle1 : AppCompatActivity() {
+class Riddle5 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_riddle1)
+        setContentView(R.layout.activity_riddle5)
 
-        val button2 = findViewById<Button>(R.id.button2)
-        button2.setOnClickListener{
-            val intent = Intent(this, Riddle2::class.java)
+        val button6 = findViewById<Button>(R.id.button6)
+        button6.setOnClickListener{
+            val intent = Intent(this, Riddle6::class.java)
             startActivity(intent)
         }
     }

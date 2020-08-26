@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Riddle1">
+    tools:context=".Riddle4">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="250dp"
         android:layout_height="200dp"
-        android:text="@string/riddle_1"
+        android:gravity="center"
+        android:text="@string/riddle_4"
         android:textColor="#000000"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button5"
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:text="@string/next"
