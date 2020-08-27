@@ -12,9 +12,9 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_riddle4.*
 
-class Riddle4 : AppCompatActivity() {
-    var mySensorManager: SensorManager? = null
-    var myProximitySensor: Sensor? = null
+class Riddle4 : AppCompatActivity(),SensorEventListener {
+    var sensorManager: SensorManager? = null
+    var proximitySensor: Sensor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,36 +22,32 @@ class Riddle4 : AppCompatActivity() {
 
         val button5 = findViewById<Button>(R.id.button5)
         button5.visibility = View.INVISIBLE
-        button5.setOnClickListener{
+        button5.setOnClickListener {
             val intent = Intent(this, Riddle5::class.java)
             startActivity(intent)
         }
 
-        mySensorManager = getSystemService(
-            Context.SENSOR_SERVICE
-        ) as SensorManager
-        myProximitySensor = mySensorManager!!.getDefaultSensor(
-            Sensor.TYPE_PROXIMITY
-        )
-            mySensorManager!!.registerListener(
-                proximitySensorEventListener,
-                myProximitySensor,
-                SensorManager.SENSOR_DELAY_NORMAL
-            )
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        proximitySensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+
     }
 
-    var proximitySensorEventListener: SensorEventListener = object : SensorEventListener {
-        override fun onAccuracyChanged(
-            sensor: Sensor,
-            accuracy: Int
-        ) {
-        }
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
-        override fun onSensorChanged(event: SensorEvent) {
-            if (event.sensor.type == Sensor.TYPE_PROXIMITY) {
-                if (event.values[0].compareTo(1.5) <= 0)
-                    button5.visibility = View.VISIBLE
-            }
+    override fun onSensorChanged(event: SensorEvent) {
+        if (event.sensor.type == Sensor.TYPE_PROXIMITY) {
+            if (event.values[0].compareTo(1.5) <= 0)
+                button5.visibility = View.VISIBLE
         }
+    }
+
+    override fun onResume() {
+        sensorManager!!.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        sensorManager!!.unregisterListener(this)
+        super.onPause()
     }
 }
