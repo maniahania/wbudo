@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.riddles">
 
-    <uses-feature android:name="android.hardware.accelerometer" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.accelerometer"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Riddle6"></activity>
+        <activity android:name=".OnlyForNow"></activity>
+        <activity android:name=".Riddle6" />
         <activity android:name=".Riddle5" />
         <activity android:name=".Riddle4" />
         <activity android:name=".Riddle3" />

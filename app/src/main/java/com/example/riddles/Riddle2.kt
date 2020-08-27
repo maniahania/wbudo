@@ -34,6 +34,7 @@ class Riddle2 : AppCompatActivity(),SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     override fun onSensorChanged(event: SensorEvent?) {
+        if (event!!.sensor.type == Sensor.TYPE_LIGHT)
             if(event!!.values[0] <30 )
             {
                 button3.visibility = View.VISIBLE
