@@ -44,26 +44,28 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent) {
         val x = event.values[0]
         val y = event.values[1]
+        if (!(((imgGreen!!.x < imgRed!!.x + 70) && (imgGreen!!.x > imgRed!!.x - 70)) && ((imgGreen!!.y < imgRed!!.y + 70) && (imgGreen!!.y > imgRed!!.y - 70)))) {
         if (abs(x) > abs(y)) {
             if (x < 0) {
-                imgGreen!!.x += 50
+                imgGreen!!.x += 20
             }
             if (x > 0) {
-                imgGreen!!.x -= 50
+                imgGreen!!.x -= 20
             }
         } else {
             if (y < 0) {
-                imgGreen!!.y -= 50
+                imgGreen!!.y -= 20
             }
             if (y > 0) {
-                imgGreen!!.y += 50
+                imgGreen!!.y += 20
             }
-        }
+        } }
         /*if (x > -2 && x < 2 && y > -2 && y < 2) {
             textView!!.text = "Not tilt device"
         }*/
-        if (((imgGreen!!.x < imgRed!!.x+100) && (imgGreen!!.x > imgRed!!.x-100)) && ((imgGreen!!.y < imgRed!!.y+100) && (imgGreen!!.y > imgRed!!.y-100)))
+        if (((imgGreen!!.x < imgRed!!.x + 70) && (imgGreen!!.x > imgRed!!.x - 70)) && ((imgGreen!!.y < imgRed!!.y + 70) && (imgGreen!!.y > imgRed!!.y - 70))) {
             button4.visibility = View.VISIBLE
+        }
     }
 
     override fun onResume() {
