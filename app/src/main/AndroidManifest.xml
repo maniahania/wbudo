@@ -13,14 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OnlyForNow"></activity>
+        <activity android:name=".Testie" />
         <activity android:name=".Riddle6" />
         <activity android:name=".Riddle5" />
         <activity android:name=".Riddle4" />
-        <activity android:name=".Riddle3" />
+        <activity
+            android:name=".Riddle3"
+            android:screenOrientation="portrait" />
         <activity android:name=".Riddle2" />
         <activity android:name=".Riddle1" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
