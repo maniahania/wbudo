@@ -16,4 +16,7 @@
     <string name="sth">sth</string>
     <string name="todo">TODO</string>
     <string name="task_3">PUT THE GREEN DOT IN THE RED DOT</string>
+    <string name="get_location">Get Location</string>
+    <string name="longitude">Longitude:</string>
+    <string name="latitude">Latitude:</string>
 </resources>
