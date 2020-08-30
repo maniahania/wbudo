@@ -13,10 +13,12 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle3.*
+import java.util.*
 import kotlin.math.abs
 
 
 class Riddle3 : AppCompatActivity(), SensorEventListener {
+    var timer: Timer? = null
     var sensorManager: SensorManager? = null
     var sensor: Sensor? = null
     var imgGreen: ImageView? = null
@@ -40,12 +42,19 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
         maxX = mdispSize.x
         maxY = mdispSize.y
 
+        val mili = MainActivity.miliseconds
+
         val button4 = findViewById<Button>(R.id.button4)
         button4.visibility = View.INVISIBLE
         button4.setOnClickListener{
             val intent = Intent(this, Riddle4::class.java)
             startActivity(intent)
+            timer!!.cancel()
+            finish()
         }
+
+        timer = Timer()
+        timer!!.schedule(timerTask(),mili)
     }
 
     override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
@@ -93,5 +102,13 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
     override fun onPause() {
         super.onPause()
         sensorManager!!.unregisterListener(this)
+    }
+
+    inner class timerTask : TimerTask() {
+        override fun run() {
+            val intent = Intent(this@Riddle3, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
