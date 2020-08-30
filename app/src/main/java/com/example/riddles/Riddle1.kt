@@ -11,8 +11,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 class Riddle1 : AppCompatActivity() {
+    var timer: Timer? = null
     private var sensorManager: SensorManager? = null
     private var gyroscopeSensor: Sensor? = null
     private var gyroscopeEventListener: SensorEventListener? = null
@@ -22,6 +24,9 @@ class Riddle1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_riddle1)
+
+        val mili = MainActivity.miliseconds
+
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         gyroscopeSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
         wallImage = findViewById<View>(R.id.wall) as ImageView
@@ -31,6 +36,8 @@ class Riddle1 : AppCompatActivity() {
         button.setOnClickListener{
             val intent = Intent(this, Riddle2::class.java)
             startActivity(intent)
+            timer!!.cancel()
+            finish()
         }
 
         if (gyroscopeSensor == null) {
@@ -51,6 +58,9 @@ class Riddle1 : AppCompatActivity() {
 
             override fun onAccuracyChanged(sensor: Sensor, i: Int) {}
         }
+
+        timer = Timer()
+        timer!!.schedule(timerTask(),mili)
     }
 
     override fun onResume() {
@@ -61,5 +71,13 @@ class Riddle1 : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         sensorManager!!.unregisterListener(gyroscopeEventListener)
+    }
+
+    inner class timerTask : TimerTask() {
+        override fun run() {
+            val intent = Intent(this@Riddle1, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

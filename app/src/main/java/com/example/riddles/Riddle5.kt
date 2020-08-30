@@ -13,8 +13,10 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle5.*
+import java.util.*
 
 class Riddle5 : AppCompatActivity(), SensorEventListener {
+    var timer: Timer? = null
     var needle: ImageView? = null
     private val mGravity = FloatArray(3)
     private val mGeomagnetic = FloatArray(3)
@@ -26,14 +28,21 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_riddle5)
 
+        val mili = MainActivity.miliseconds
+
         val button6 = findViewById<Button>(R.id.button6)
         button6.visibility = View.INVISIBLE
         needle = findViewById<View>(R.id.needleImage) as ImageView
         button6.setOnClickListener {
-            val intent = Intent(this, Riddle6::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            timer!!.cancel()
+            finish()
         }
         mSensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+
+        timer = Timer()
+        timer!!.schedule(timerTask(),mili)
     }
 
     override fun onResume() {
@@ -83,4 +92,12 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor, i: Int) {}
+
+    inner class timerTask : TimerTask() {
+        override fun run() {
+            val intent = Intent(this@Riddle5, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 }
