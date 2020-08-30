@@ -10,13 +10,13 @@
     <string name="riddle_4">RIDDLE 4</string>
     <string name="riddle_5">RIDDLE 5</string>
     <string name="riddle_6">RIDDLE 6</string>
-    <string name="task_2">BLOCK THE LIGHT SOURCE</string>
-    <string name="task_4">HOLD AN OBJECT CLOSE TO YOUR PHONE</string>
     <string name="sth">sth</string>
     <string name="todo">TODO</string>
-    <string name="task_3">PUT THE GREEN DOT IN THE RED DOT</string>
-    <string name="task_5">MAKE THE NEEDLE SHOW THE NORTH</string>
-    <string name="ch_opak_nie_ciana_da_si_przesun">CHŁOPAK NIE ŚCIANA, DA SIĘ PRZESUNĄĆ</string>
     <string name="movable_wall">movable wall</string>
     <string name="finish">FINISH</string>
+    <string name="task_1">SHAKE IT OFF</string>
+    <string name="task_2">WHAT\'S HIDDEN IN THE DARK?</string>
+    <string name="make_them_touch">MAKE THEM TOUCH</string>
+    <string name="task_4">DON\'T BE A STRANGER</string>
+    <string name="task_5">SEA_ CO__ERRY</string>
 </resources>
