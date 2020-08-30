@@ -1,18 +1,17 @@
 package com.example.riddles
 
 import android.content.Intent
-import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle5.*
 
 class Riddle5 : AppCompatActivity(), SensorEventListener {
@@ -61,8 +60,9 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
                 mGeomagnetic[1] = alpha * mGeomagnetic[1] + (1 - alpha) * sensorEvent.values[1]
                 mGeomagnetic[2] = alpha * mGeomagnetic[2] + (1 - alpha) * sensorEvent.values[2]
             }
-            val R = FloatArray(9)
-            val I = FloatArray(9)
+
+            val R = FloatArray(9) //rotationMatrix
+            val I = FloatArray(9) //InclinationMatrix
             val success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic)
             if (success) {
                 val orientation = FloatArray(3)
