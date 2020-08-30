@@ -17,4 +17,6 @@
     <string name="todo">TODO</string>
     <string name="task_3">PUT THE GREEN DOT IN THE RED DOT</string>
     <string name="task_5">MAKE THE NEEDLE SHOW THE NORTH</string>
+    <string name="ch_opak_nie_ciana_da_si_przesun">CHŁOPAK NIE ŚCIANA, DA SIĘ PRZESUNĄĆ</string>
+    <string name="movable_wall">movable wall</string>
 </resources>
