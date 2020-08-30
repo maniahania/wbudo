@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
 
-        LocationHelper().startListeningUserLocation( //ten kod wykonuje sie pozniej od kodu po tej funkcji
+        LocationHelper().startListeningUserLocation(
             this,
             object : LocationHelper.MyLocationListener {
                 override fun onLocationChanged(location: Location) {
