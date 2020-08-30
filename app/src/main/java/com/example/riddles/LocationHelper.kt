@@ -16,8 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 
 class LocationHelper {
-    val LOCATION_REFRESH_TIME = 3000 // 3 seconds. The Minimum Time to get location update
-    val LOCATION_REFRESH_DISTANCE = 30 // 30 meters. The Minimum Distance to be changed to get location update
+    val LOCATION_REFRESH_TIME = 3000
+    val LOCATION_REFRESH_DISTANCE = 30
     val MY_PERMISSIONS_REQUEST_LOCATION = 100
 
     var myLocationListener: MyLocationListener? = null
@@ -36,8 +36,7 @@ class LocationHelper {
 
         val mLocationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
-                //your code here
-                myLocationListener!!.onLocationChanged(location) // calling listener to inform that updated location is available
+                myLocationListener!!.onLocationChanged(location)
             }
             override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
             override fun onProviderEnabled(provider: String) {}

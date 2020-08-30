@@ -18,7 +18,6 @@ class Riddle1 : AppCompatActivity() {
     private var sensorManager: SensorManager? = null
     private var gyroscopeSensor: Sensor? = null
     private var gyroscopeEventListener: SensorEventListener? = null
-    var squareImage: ImageView? = null
     var wallImage: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

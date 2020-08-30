@@ -26,6 +26,8 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
     var imgRed: ImageView? = null
     var maxX: Int? = null
     var maxY: Int? = null
+    private val MOVEMENT = 20
+    private val DISTANCE = 150
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,35 +72,35 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent) {
         val x = event.values[0]
         val y = event.values[1]
-        if (!(((imgGreen!!.x < imgRed!!.x + 150) && (imgGreen!!.x > imgRed!!.x - 150)) && ((imgGreen!!.y < imgRed!!.y + 150) && (imgGreen!!.y > imgRed!!.y - 150)))) {
-        if (abs(x) > abs(y)) {
-            if (x < 0 && imgGreen!!.x+20 <= maxX!!) {
-                imgGreen!!.x += 20
-            } else if (x<0 && imgGreen!!.x+20 > maxX!!) {
+        if (!(((imgGreen!!.x < imgRed!!.x + DISTANCE) && (imgGreen!!.x > imgRed!!.x - DISTANCE)) && ((imgGreen!!.y < imgRed!!.y + DISTANCE) && (imgGreen!!.y > imgRed!!.y - DISTANCE)))) {
+            if (abs(x) > abs(y)) {
+            if (x < 0 && imgGreen!!.x+ MOVEMENT <= maxX!!) {
+                imgGreen!!.x += MOVEMENT
+            } else if (x<0 && imgGreen!!.x+ MOVEMENT > maxX!!) {
                 imgGreen!!.x = maxX!!.toFloat()
             }
-            if (x > 0 && imgGreen!!.x-20>=0) {
-                imgGreen!!.x -= 20
-            } else if(x>0 && imgGreen!!.x-20<0)
+            if (x > 0 && imgGreen!!.x- MOVEMENT >=0) {
+                imgGreen!!.x -= MOVEMENT
+            } else if(x>0 && imgGreen!!.x- MOVEMENT <0)
             {
                 imgGreen!!.x = 0F
             }
         } else {
-            if (y < 0 && imgGreen!!.y-20 >=0) {
-                imgGreen!!.y -= 20
-            } else if (y<0 && imgGreen!!.y-20<0) {
+            if (y < 0 && imgGreen!!.y- MOVEMENT >=0) {
+                imgGreen!!.y -= MOVEMENT
+            } else if (y<0 && imgGreen!!.y- MOVEMENT <0) {
                 imgGreen!!.y = 0F
             }
-            if (y > 0 && imgGreen!!.y+20<=maxY!!) {
-                imgGreen!!.y += 20
-            } else if (y>0 && imgGreen!!.y+20 > maxY!!) {
+            if (y > 0 && imgGreen!!.y+ MOVEMENT <=maxY!!) {
+                imgGreen!!.y += MOVEMENT
+            } else if (y>0 && imgGreen!!.y+ MOVEMENT > maxY!!) {
                 imgGreen!!.y = maxY!!.toFloat()
             }
         } }
         /*if (x > -2 && x < 2 && y > -2 && y < 2) {
             textView!!.text = "Not tilt device"
         }*/
-        if (((imgGreen!!.x < imgRed!!.x + 150) && (imgGreen!!.x > imgRed!!.x - 150)) && ((imgGreen!!.y < imgRed!!.y + 150) && (imgGreen!!.y > imgRed!!.y - 150))) {
+        if (((imgGreen!!.x < imgRed!!.x + DISTANCE) && (imgGreen!!.x > imgRed!!.x - DISTANCE)) && ((imgGreen!!.y < imgRed!!.y + DISTANCE) && (imgGreen!!.y > imgRed!!.y - DISTANCE))) {
             button4.visibility = View.VISIBLE
         }
     }
