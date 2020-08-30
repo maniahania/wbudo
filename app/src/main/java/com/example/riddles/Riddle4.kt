@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle4.*
 import java.util.*
@@ -35,6 +36,14 @@ class Riddle4 : AppCompatActivity(),SensorEventListener {
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         proximitySensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+
+        if (proximitySensor == null) {
+            Toast.makeText(this, "The device has no Proximity Sensor !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Riddle5::class.java)
+            startActivity(intent)
+            timer!!.cancel()
+            finish()
+        }
 
         timer = Timer()
         timer!!.schedule(timerTask(),mili)

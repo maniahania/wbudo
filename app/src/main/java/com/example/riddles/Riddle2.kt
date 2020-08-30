@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle2.*
 import java.util.*
@@ -35,6 +36,14 @@ class Riddle2 : AppCompatActivity(),SensorEventListener {
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_LIGHT)
+
+        if (sensor == null) {
+            Toast.makeText(this, "The device has no Light Sensor !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Riddle3::class.java)
+            startActivity(intent)
+            timer!!.cancel()
+            finish()
+        }
 
         timer = Timer()
         timer!!.schedule(timerTask(),mili)

@@ -11,6 +11,7 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle5.*
 import java.util.*
@@ -23,6 +24,8 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
     private var azimuth = 0f
     private var currentAzimuth = 0f
     private var mSensorManager: SensorManager? = null
+    var magnetometer: Sensor? = null
+    var accelerometer: Sensor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +43,24 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
             finish()
         }
         mSensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        magnetometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        accelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        if (magnetometer == null) {
+            Toast.makeText(this, "The device has no Magnetometer !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            timer!!.cancel()
+            finish()
+        }
+
+        if (accelerometer == null) {
+            Toast.makeText(this, "The device has no Accelerometer !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            timer!!.cancel()
+            finish()
+        }
 
         timer = Timer()
         timer!!.schedule(timerTask(),mili)
@@ -47,8 +68,8 @@ class Riddle5 : AppCompatActivity(), SensorEventListener {
 
     override fun onResume() {
         super.onResume()
-        mSensorManager!!.registerListener(this, mSensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_GAME)
-        mSensorManager!!.registerListener(this, mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME)
+        mSensorManager!!.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME)
+        mSensorManager!!.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME)
     }
 
     override fun onPause() {

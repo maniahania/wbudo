@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_riddle3.*
 import java.util.*
@@ -47,6 +48,14 @@ class Riddle3 : AppCompatActivity(), SensorEventListener {
         val button4 = findViewById<Button>(R.id.button4)
         button4.visibility = View.INVISIBLE
         button4.setOnClickListener{
+            val intent = Intent(this, Riddle4::class.java)
+            startActivity(intent)
+            timer!!.cancel()
+            finish()
+        }
+
+        if (sensor == null) {
+            Toast.makeText(this, "The device has no Accelerometer !", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, Riddle4::class.java)
             startActivity(intent)
             timer!!.cancel()

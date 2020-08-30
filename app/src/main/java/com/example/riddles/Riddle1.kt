@@ -42,6 +42,9 @@ class Riddle1 : AppCompatActivity() {
 
         if (gyroscopeSensor == null) {
             Toast.makeText(this, "The device has no Gyroscope !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Riddle2::class.java)
+            startActivity(intent)
+            timer!!.cancel()
             finish()
         }
         gyroscopeEventListener = object : SensorEventListener {
